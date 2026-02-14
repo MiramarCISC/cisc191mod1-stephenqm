@@ -17,8 +17,15 @@ public class IntArrayToolkit {
      * @throws IllegalArgumentException if a is null
      */
     public static int sum(int[] a) {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (a == null)
+            throw new IllegalArgumentException("Array is null");
+        int total = 0;
+        for (int val : a) {
+            total += val;
+        }
+
+        return total;
+
     }
 
     /**
@@ -26,8 +33,16 @@ public class IntArrayToolkit {
      * @throws IllegalArgumentException if a is null or empty
      */
     public static int max(int[] a) {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (a == null || a.length == 0)
+            throw new IllegalArgumentException("Array must not be null or empty");
+        int maximum = a[0];
+        for (int i = 1; i < a.length; i++) {
+            if (a[i] > maximum) {
+                maximum = a[i];
+            }
+        }
+
+        return maximum;
     }
 
     /**
@@ -35,8 +50,15 @@ public class IntArrayToolkit {
      * @throws IllegalArgumentException if a is null
      */
     public static int indexOf(int[] a, int target) {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (a == null)
+            throw new IllegalArgumentException("Array must not be null");
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == target) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     /**
@@ -45,7 +67,11 @@ public class IntArrayToolkit {
      * @throws IllegalArgumentException if a is null
      */
     public static int[] copySortedAscending(int[] a) {
-        // TODO: implement (hint: defensive copy + Arrays.sort)
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (a == null)
+            throw new IllegalArgumentException("Array must not be null");
+        int[] copy = Arrays.copyOf(a,a.length);
+        Arrays.sort(copy);
+
+        return copy;
     }
 }
