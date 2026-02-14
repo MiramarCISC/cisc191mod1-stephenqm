@@ -8,11 +8,11 @@ public class Main {
     public static void main(String[] args) {
         // TODO: Create at least 6 students and demonstrate:
         Student[] students = {
-                new Student("Andre",   4.2, 1),
-                new Student("Chris",     4.5, 2),
-                new Student("Abe",  4.5, 3),
-                new Student("Collin",   4.2, 4),
-                new Student("Jace",     3.9, 5),
+                new Student("Andre",   3.8, 1),
+                new Student("Chris",     4.0, 2),
+                new Student("Abe",  4.0, 3),
+                new Student("Collin",   3.8, 4),
+                new Student("Jace",     3.7, 5),
                 new Student("Justin",   2.1, 6)
         };
         // - original order
