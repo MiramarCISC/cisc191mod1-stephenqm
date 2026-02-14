@@ -21,8 +21,14 @@ public class StudentArrayToolkit {
      * Must not modify the original array.
      */
     public static Student[] copySortedByGpaDesc(Student[] students) {
-        // TODO: defensive copy + Arrays.sort with Comparator lambda
-        throw new UnsupportedOperationException("Not implemented yet");
+        Student[] copy = Arrays.copyOf(students, students.length);
+        Arrays.sort(copy, (a, b) -> {
+            int gpaCmp = Double.compare(b.getGpa(), a.getGpa()); // descending GPA
+            if (gpaCmp != 0) return gpaCmp;
+            return a.getName().compareTo(b.getName());           // tie break
+        });
+
+        return copy;
     }
 
     /**
@@ -30,18 +36,24 @@ public class StudentArrayToolkit {
      * Returns the Student if found, otherwise null.
      */
     public static Student findByIdLinear(Student[] students, int id) {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
+        for (Student s : students) {
+            if (s.getId() == id) {
+                return s;
+            }
+        }
 
-    /**
-     * Returns a NEW array containing the top N students by GPA desc (ties: name asc).
-     * If n > students.length, return all students (sorted).
-     * If n == 0, return an empty array.
-     * @throws IllegalArgumentException if n < 0
-     */
-    public static Student[] topNByGpa(Student[] students, int n) {
-        // TODO: validate n, sort copy, return first n in a new array
-        throw new UnsupportedOperationException("Not implemented yet");
+        return null;
     }
-}
+        /**
+         * Returns a NEW array containing the top N students by GPA desc (ties: name asc).
+         * If n > students.length, return all students (sorted).
+         * If n == 0, return an empty array.
+         * @throws IllegalArgumentException if n < 0
+         */
+        public static Student[] topNByGpa(Student[] students, int n) {
+            if (n < 0) throw new IllegalArgumentException("n must not be negative");
+            Student[] sorted = copySortedByGpaDesc(students);
+            int count = Math.min(n, sorted.length);
+            return Arrays.copyOf(sorted, count);
+        }
+    }
